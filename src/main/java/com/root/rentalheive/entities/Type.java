@@ -21,7 +21,7 @@ public class Type {
 
     private String name;
 
-    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Equipment> equipments;
 
     @Override

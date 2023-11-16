@@ -37,6 +37,13 @@ public class TypeServices {
         }
         return null;
     }
+    public Type findById(Long id){
+        if(typeRepository.findById(id).isPresent()){
+            return typeRepository.findById(id).get();
+        }
+        return null;
+    }
+
     public List<Type> getTypes() {
         return typeRepository.findAll();
     }
