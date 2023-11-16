@@ -13,6 +13,7 @@ public class TypeServices {
 
     TypeRepository typeRepository;
 
+    @Autowired
     public TypeServices(TypeRepository typeRepository){
         this.typeRepository=typeRepository;
     }

@@ -48,7 +48,6 @@ public class TypeServicesTest {
                 .name("updated test")
                 .build();
 
-        // Mock the save method of the typeRepository
         Mockito.when(typeRepository.save(type)).thenReturn(type);
 
         Type updatedType = typeServices.updateService(type);
