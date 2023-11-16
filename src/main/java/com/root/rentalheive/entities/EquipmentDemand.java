@@ -22,7 +22,7 @@ public class EquipmentDemand {
 
     @ManyToOne
     @JoinColumn(name = "demand_id")
-    private Demande demande;
+    private Demand demand;
 
 
 }
