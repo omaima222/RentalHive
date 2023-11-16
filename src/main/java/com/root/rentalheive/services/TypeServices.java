@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -19,18 +20,24 @@ public class TypeServices {
     }
 
     public Type addService(Type type) {
-        return null;
+        return typeRepository.save(type);
     }
 
     public Type updateService(Type type) {
-        return null;
+        return typeRepository.save(type);
     }
 
     public void deleteService(Type type) {
-        //return false;
+        typeRepository.delete(type);
     }
 
-    public List<Type> getTypes() {
+    public Type findByName(String name) {
+        if(typeRepository.findByName(name).isPresent()){
+            return typeRepository.findByName(name).get();
+        }
         return null;
+    }
+    public List<Type> getTypes() {
+        return typeRepository.findAll();
     }
 }
