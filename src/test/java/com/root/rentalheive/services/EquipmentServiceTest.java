@@ -47,13 +47,8 @@ class EquipmentServiceTest {
         Equipment equipment = new Equipment();
         equipment.setId(1L);
         equipment.setName("Updated Equipment");
-
-        // Mock the save method of the equipmentRepository
         Mockito.when(equipmentRepository.save(equipment)).thenReturn(equipment);
-
         equipmentService.updateEquipment(equipment);
-
-        // Verify that the save method was called
         Mockito.verify(equipmentRepository).save(equipment);
     }
 
@@ -61,13 +56,10 @@ class EquipmentServiceTest {
     void deleteEquipment() {
         Equipment equipment = new Equipment();
         equipment.setId(1L);
-
-        // Mock the delete method of the equipmentRepository
         Mockito.doNothing().when(equipmentRepository).delete(equipment);
 
         equipmentService.deleteEquipment(equipment);
 
-        // Verify that the delete method was called
         Mockito.verify(equipmentRepository).delete(equipment);
     }
 
@@ -76,12 +68,8 @@ class EquipmentServiceTest {
         List<Equipment> equipments = new ArrayList<>();
         equipments.add(new Equipment());
         equipments.add(new Equipment());
-
-        // Mock the findAll method of the equipmentRepository
         Mockito.when(equipmentRepository.findAll()).thenReturn(equipments);
-
         List<Equipment> retrievedEquipments = equipmentService.getEquipments();
-
         assertEquals(equipments, retrievedEquipments);
     }
 }
