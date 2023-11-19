@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 
 import static org.mockito.Mockito.mock;
 
-public class UserServiceTest {
+public class FindUserTest {
 
     static UserService userService;
     static UserRepository userRepository;
