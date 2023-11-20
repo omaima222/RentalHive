@@ -1,5 +1,6 @@
 package com.root.rentalheive.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,9 +18,11 @@ public class Demand {
     private Date DemandedDate;
 
     @OneToMany(mappedBy = "demand", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Devis> devis;
 
     @OneToMany(mappedBy = "demand", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<EquipmentDemand> equipmentDemands;
 
     @ManyToOne

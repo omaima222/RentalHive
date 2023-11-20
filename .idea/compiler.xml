@@ -10,6 +10,9 @@
         <module name="RentalHeive" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="RentalHive" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
