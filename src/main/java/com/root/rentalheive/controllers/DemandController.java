@@ -20,10 +20,10 @@ public class DemandController {
     }
     @PostMapping("")
     public Demand save(@RequestBody DemandDto demand){
-        User hamid = userService.getUserById(demand.getUserId());
         return demandService.save(Demand.builder().
                 user(userService.getUserById(demand.getUserId())).
-                DemandedDate(demand.getDemandedDate()).
+                DemandedDate(demand.getDemandedDate()
+                ).
                 build());
     }
     @PutMapping("")
