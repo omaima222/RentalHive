@@ -13,5 +13,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class DemandDto {
     Long userId;
-    Date demandedDate;
+    Date startDate;
+    Date endDate;
 }

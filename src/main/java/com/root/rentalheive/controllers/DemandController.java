@@ -22,12 +22,8 @@ public class DemandController {
     public Demand save(@RequestBody DemandDto demand){
         return demandService.save(Demand.builder().
                 user(userService.getUserById(demand.getUserId())).
-                DemandedDate(demand.getDemandedDate()
-                ).
-                build());
-    }
-    @PutMapping("")
-    public String update(){
-        return "update";
+                startDate(demand.getStartDate()).
+                endDate(demand.getEndDate()
+                ).build());
     }
 }
