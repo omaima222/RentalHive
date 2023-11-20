@@ -17,7 +17,6 @@ import java.util.Objects;
 @Builder
 public class Equipment {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
