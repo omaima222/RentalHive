@@ -32,21 +32,13 @@ public class Devis {
 
         @OneToOne
         @JoinColumn(name = "offer_id")
+        @JsonIgnore
         private Offer offer;
 
         public Map<String, Object> toMap() {
 
-                Map<String, Object> equipmentsList = this.demand.getEquipmentDemands().stream()
-                .collect(Collectors.toMap(
-                        "equipment",
-                        x -> {
-                            Map<String, Object> equipment = new HashMap<>();
-                            equipment.put("type", x.getEquipment().getType());
-                            equipment.put("name", x.getEquipment().getName());
-                            equipment.put("duration", x.getDuration());
-                            return equipment;
-                        }
-                ));
+
+                List<Map<String, Object>> equipmentsList = this.demand.getEquipmentDemands().stream().map(x->x.toMap()).collect(Collectors.toList());
 
                 Map<String, Object> map = new HashMap<>();
                 map.put("Equipment(s)", equipmentsList);

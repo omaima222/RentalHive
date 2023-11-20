@@ -27,32 +27,30 @@ public class PdfGenerator {
             String columnName = entry.getKey();
             Object value = entry.getValue();
 
-            Paragraph columnNameParagraph = new Paragraph(columnName , boldFont);
+            Paragraph columnNameParagraph = new Paragraph(columnName, boldFont);
             document.add(columnNameParagraph);
-z
+
             if (columnName.equals("Equipment(s)")) {
-                if (value instanceof Map) {
-                    Map<String, Object> equipmentInfo = (Map<String, Object>) value;
-
+                if (value instanceof List) {
+                    List<Map<String, Object>> equipmentList = (List<Map<String, Object>>) value;
                     PdfPTable table = new PdfPTable(3);
-                    table.setWidthPercentage(100);
-                    table.setSpacingBefore(10f);
-
                     table.addCell("Name");
                     table.addCell("Type");
                     table.addCell("Duration");
+                    for (Map<String, Object> equipmentInfo : equipmentList) {
+                        table.setWidthPercentage(100);
+                        table.setSpacingBefore(10f);
 
-                    table.addCell(equipmentInfo.get("name").toString());
-                    table.addCell(equipmentInfo.get("type").toString());
-                    table.addCell(equipmentInfo.get("duration").toString());
-
+                        table.addCell(equipmentInfo.get("Name").toString());
+                        table.addCell(equipmentInfo.get("Type").toString());
+                        table.addCell(equipmentInfo.get("Duration").toString());
+                    }
                     document.add(table);
                 }
             } else {
                 Paragraph valueParagraph = new Paragraph(value.toString());
                 document.add(valueParagraph);
             }
-
 
             document.add(new Paragraph("\n"));
         }

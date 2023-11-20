@@ -32,7 +32,7 @@ public class EquipmentDemand {
 
         Map<String, Object> map = new HashMap<>();
         map.put("Name", this.getEquipment().getName());
-        map.put("Type", this.getEquipment().getType());
+        map.put("Type", this.getEquipment().getType().getName());
         map.put("Duration", this.duration);
 
         return map;
