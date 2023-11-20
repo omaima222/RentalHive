@@ -20,9 +20,6 @@ public class Devis {
         private Date startedDate;
 
 
-        @ManyToOne
-        @JoinColumn(name = "demand_id")
-        private Demand demand;
 
         @OneToOne
         @JoinColumn(name = "offer_id")

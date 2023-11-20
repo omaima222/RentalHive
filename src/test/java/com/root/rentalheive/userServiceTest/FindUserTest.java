@@ -12,8 +12,8 @@ public class FindUserTest {
     static UserRepository userRepository;
     @BeforeAll
     public static void init() throws Exception{
-        userService = new UserService();
-        userRepository = mock(UserRepository.class);
+//        userService = new UserService();
+//        userRepository = mock(UserRepository.class);
 
     }
 }

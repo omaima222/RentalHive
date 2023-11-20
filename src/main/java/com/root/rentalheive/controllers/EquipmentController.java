@@ -19,7 +19,6 @@ public class EquipmentController {
 
     EquipmentService equipmentServices;
 
-    @Autowired
     public EquipmentController(EquipmentService equipmentServices, TypeServices typeServices) {
         this.equipmentServices = equipmentServices;
         this.typeServices = typeServices;

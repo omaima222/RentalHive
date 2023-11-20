@@ -20,9 +20,7 @@ public class EquipmentDemand {
     @JoinColumn(name = "equipment_id")
     private Equipment equipment;
 
-    @ManyToOne
-    @JoinColumn(name = "demand_id")
-    private Demand demand;
+
 
 
 }
