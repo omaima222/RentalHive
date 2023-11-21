@@ -24,7 +24,7 @@ public class DemandServiceTest {
         DemandeRepository demandeRepository = mock(DemandeRepository.class);
         DemandService demandService = new DemandService(demandeRepository);
         Demand demand = new Demand();
-        demand.setStartDate(new Date());
+        demand.setDemandedDate(new Date());
         demand.setUser(new User());
         assertEquals(demand, demandService.save(demand));
 

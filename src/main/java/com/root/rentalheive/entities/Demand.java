@@ -3,6 +3,8 @@ package com.root.rentalheive.entities;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,16 +26,19 @@ public class Demand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
 
-    @JsonProperty("startDate")
-    private Date startDate;
+    @JsonProperty("DemandedDate")
+    private Date DemandedDate;
 
+    @Nullable
     @JsonProperty("endDate")
     private Date endDate;
 
     @OneToMany(mappedBy = "demand", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Devis> devis;
 
     @OneToMany(mappedBy = "demand", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<EquipmentDemand> equipmentDemands;
 
     @ManyToOne
