@@ -20,8 +20,17 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class FindUserTest {
 
+<<<<<<< HEAD
+    static UserService userService;
+    static UserRepository userRepository;
+    @BeforeAll
+    public static void init() throws Exception{
+//        userService = new UserService();
+//        userRepository = mock(UserRepository.class);
+=======
     @Mock
     private UserRepository userRepository;
+>>>>>>> 607aa925b24669de317d8d687d84bb00349d4361
 
     @InjectMocks
     private UserService userService;

@@ -1,5 +1,8 @@
 package com.root.rentalheive.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,15 +13,18 @@ import java.util.stream.Collectors;
 
 @Entity
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class EquipmentDemand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date startedDate;
-
     private int duration;
 
+    private Date starDate;
+
+    @Nullable
+    private Date endDate;
 
     @ManyToOne
     @JoinColumn(name = "equipment_id")

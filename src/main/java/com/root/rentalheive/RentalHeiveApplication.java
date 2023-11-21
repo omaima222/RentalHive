@@ -15,6 +15,7 @@ public class RentalHeiveApplication {
         return new ModelMapper();
     }*/
     public static void main(String[] args) {
+//        System.setProperty("liquibase.secureParsing", "false");
         SpringApplication.run(RentalHeiveApplication.class, args);
     }
 

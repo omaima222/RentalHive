@@ -1,5 +1,8 @@
 package com.root.rentalheive.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Devis {
 
         @Id
@@ -25,9 +29,11 @@ public class Devis {
 
         private Date startedDate;
 
+        private Date endDate;
 
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "demand_id")
+        @JsonIgnore
         private Demand demand;
 
         @OneToOne
