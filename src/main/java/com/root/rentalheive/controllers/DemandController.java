@@ -2,12 +2,9 @@ package com.root.rentalheive.controllers;
 
 import com.root.rentalheive.dto.DemandDto;
 import com.root.rentalheive.entities.Demand;
-import com.root.rentalheive.entities.User;
 import com.root.rentalheive.services.DemandService;
 import com.root.rentalheive.services.UserService;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.Date;
 
 @RestController
 @RequestMapping("/api/demands")
@@ -20,14 +17,10 @@ public class DemandController {
     }
     @PostMapping("")
     public Demand save(@RequestBody DemandDto demand){
-        User hamid = userService.getUserById(demand.getUserId());
         return demandService.save(Demand.builder().
                 user(userService.getUserById(demand.getUserId())).
                 DemandedDate(demand.getDemandedDate()).
-                build());
-    }
-    @PutMapping("")
-    public String update(){
-        return "update";
+                endDate(demand.getEndDate()
+                ).build());
     }
 }
