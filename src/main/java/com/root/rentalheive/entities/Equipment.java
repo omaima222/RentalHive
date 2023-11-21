@@ -28,11 +28,11 @@ public class Equipment {
 
     private Date createdDate;
 
-    @ManyToOne
-    @JoinColumn(name = "type_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_id" )
     private Type type;
 
-   @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL)
+   @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
     private List<EquipmentDemand> equipmentDemands;
 
     @Override

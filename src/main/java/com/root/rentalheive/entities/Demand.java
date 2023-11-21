@@ -37,14 +37,10 @@ public class Demand {
     @JsonIgnore
     private List<Devis> devis;
 
-    @OneToMany(mappedBy = "demand", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany(mappedBy = "demand", cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
     private List<EquipmentDemand> equipmentDemands;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-
-
 }

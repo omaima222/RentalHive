@@ -1,12 +1,16 @@
 package com.root.rentalheive.dto;
 
+import com.root.rentalheive.entities.EquipmentDemand;
 import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.MutablePropertyValues;
 
 import java.util.Date;
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -15,4 +19,6 @@ public class DemandDto {
     Long userId;
     Date DemandedDate;
     Date endDate;
+    Integer duration;
+    Long equipmentId;
 }
