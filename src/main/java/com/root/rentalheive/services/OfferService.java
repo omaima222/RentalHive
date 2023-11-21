@@ -37,12 +37,14 @@ public class OfferService {
     }
 
 
-    public void sendOffer(){
+    public void sendOffer(Long id){
+        Offer offer = this.offerRepository.findById(id).get();
+
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo("user@gmail.com");
         message.setFrom("RentalHive@gmail.com");
         message.setSubject("Final offer");
-        message.setText("iwa");
+        message.setText(offer.toMap().toString());
 
         mailSender.send(message);
     }

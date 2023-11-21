@@ -32,9 +32,9 @@ public class OfferController {
         return offerService.getOffers();
     }
 
-    @GetMapping("/send")
-    public void sendOffer(){
-        this.offerService.sendOffer();
+    @GetMapping("/{id}/send")
+    public void sendOffer(@PathVariable Long id){
+        this.offerService.sendOffer(id);
     }
 
     @PostMapping("")

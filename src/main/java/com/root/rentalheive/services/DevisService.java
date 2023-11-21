@@ -41,12 +41,14 @@ public class DevisService {
     }
 
 
-    public void sendDevis(){
+    public void sendDevis(Long id){
+        Devis devis = this.devisRepository.findById(id).get();
+
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo("user@gmail.com");
         message.setFrom("RentalHive@gmail.com");
         message.setSubject("Devis for your recent demand .");
-        message.setText("iwa");
+        message.setText( devis.toMap().toString());
 
         mailSender.send(message);
     }
