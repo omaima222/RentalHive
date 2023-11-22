@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.MutablePropertyValues;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -17,8 +18,8 @@ import java.util.List;
 @NoArgsConstructor
 public class DemandDto {
     Long userId;
-    Date DemandedDate;
-    Date endDate;
+    LocalDate DemandedDate;
+    LocalDate endDate;
     Integer duration;
     Long equipmentId;
 }

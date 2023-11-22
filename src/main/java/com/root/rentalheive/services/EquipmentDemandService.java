@@ -6,6 +6,7 @@ import com.root.rentalheive.repositories.EquipmentDemandRepository;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -18,13 +19,8 @@ public class EquipmentDemandService {
     public EquipmentDemand save(EquipmentDemand equipmentDemand){
         return equipmentDemandRepository.save(equipmentDemand);
     }
-    public List <EquipmentDemand>  checkAvailability(Date startDate, Date endDate , Equipment equipment) throws ParseException {
+    public List <EquipmentDemand>  checkAvailability(LocalDate startDate, LocalDate endDate , Equipment equipment) throws ParseException {
         List <EquipmentDemand>   equipmentDemand = equipmentDemandRepository.checkAvailability(startDate,endDate,equipment);
-
-        return equipmentDemand;
-    }
-    public List<EquipmentDemand> checkAvailability2(Equipment equipment){
-        List<EquipmentDemand> equipmentDemand = equipmentDemandRepository.findByEquipment(equipment);
         return equipmentDemand;
     }
 }

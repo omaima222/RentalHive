@@ -4,6 +4,7 @@ import jakarta.annotation.Nullable;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 @Builder
 @Data
@@ -13,7 +14,7 @@ public class EquipmentDemandDto {
     Integer duration;
     DemandDto demandDto;
     EquipmentDto equipmentDto;
-    Date endDate;
-    Date starDate;
+    LocalDate endDate;
+    LocalDate starDate;
 
 }
