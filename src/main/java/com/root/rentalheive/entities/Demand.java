@@ -6,16 +6,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,14 +35,10 @@ public class Demand {
     @JsonIgnore
     private List<Devis> devis;
 
-    @OneToMany(mappedBy = "demand", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany(mappedBy = "demand", cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
     private List<EquipmentDemand> equipmentDemands;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-
-
 }

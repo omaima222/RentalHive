@@ -13,4 +13,7 @@ public class DemandService {
     public Demand save(Demand demand){
         return demandeRepository.save(demand);
     }
+    public Demand getDemandById(Long id){
+        return demandeRepository.getDemandById(id);
+    }
 }

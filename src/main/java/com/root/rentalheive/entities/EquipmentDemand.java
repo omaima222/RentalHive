@@ -4,15 +4,20 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Entity
-@Data
+@Builder
+@NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class EquipmentDemand {
     @Id
@@ -21,16 +26,16 @@ public class EquipmentDemand {
 
     private int duration;
 
-    private Date starDate;
+    private LocalDate starDate;
 
     @Nullable
-    private Date endDate;
+    private LocalDate endDate;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "equipment_id")
     private Equipment equipment;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "demand_id")
     private Demand demand;
 
@@ -43,6 +48,4 @@ public class EquipmentDemand {
 
         return map;
     }
-
-
 }
