@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.root.rentalheive.enums.DevisStatus;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
+import lombok.Getter;
+import lombok.Setter;
+import com.root.rentalheive.enums.DevisStatus;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,7 +19,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Entity
-@Data
+@Getter
+@Setter
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Devis {
 
@@ -28,6 +30,8 @@ public class Devis {
 
         private float price;
 
+//        @Enumerated(EnumType.STRING)
+//        @Column(name="status")
         private DevisStatus status;
 
         @OneToOne
