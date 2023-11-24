@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -24,7 +25,7 @@ public class Equipment {
 
     private String name;
 
-    private Date createdDate;
+    private LocalDate creationDate;
 
     @ManyToOne()
     @JoinColumn(name = "type_id" )
@@ -38,11 +39,12 @@ public class Equipment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Equipment equipment = (Equipment) o;
-        return Objects.equals(id, equipment.id) && Objects.equals(name, equipment.name) && Objects.equals(createdDate, equipment.createdDate) && Objects.equals(type, equipment.type);
+        return Objects.equals(id, equipment.id) && Objects.equals(name, equipment.name) && Objects.equals(creationDate, equipment.creationDate) && Objects.equals(type, equipment.type) && Objects.equals(equipmentDemands, equipment.equipmentDemands);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, createdDate, type);
+        return Objects.hash(id, name, creationDate, type, equipmentDemands);
     }
+
 }

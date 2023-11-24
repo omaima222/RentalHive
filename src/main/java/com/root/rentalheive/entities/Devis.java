@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.root.rentalheive.enums.DevisStatus;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -25,13 +28,10 @@ public class Devis {
 
         private float price;
 
-        private boolean isAccepted;
+        private DevisStatus status;
 
-        private Date startedDate;
-
-        private Date endDate;
-
-        @ManyToOne(fetch = FetchType.LAZY)
+        @OneToOne
+        @Nullable
         @JoinColumn(name = "demand_id")
         @JsonIgnore
         private Demand demand;
@@ -49,8 +49,7 @@ public class Devis {
                 Map<String, Object> map = new HashMap<>();
                 map.put("Equipment(s)", equipmentsList);
                 map.put("Total price", this.price);
-                map.put("Demand date", this.demand.getDemandedDate());
-                map.put("Created date", this.startedDate);
+                map.put("Demand date", this.demand.getStartDate());
 
                 return map;
         }

@@ -24,18 +24,16 @@ public class EquipmentDemand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int duration;
-
-    private LocalDate starDate;
+    private LocalDate startDate;
 
     @Nullable
     private LocalDate endDate;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "equipment_id")
     private Equipment equipment;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "demand_id")
     private Demand demand;
 
@@ -44,7 +42,6 @@ public class EquipmentDemand {
         Map<String, Object> map = new HashMap<>();
         map.put("Name", this.getEquipment().getName());
         map.put("Type", this.getEquipment().getType().getName());
-        map.put("Duration", this.duration);
 
         return map;
     }
