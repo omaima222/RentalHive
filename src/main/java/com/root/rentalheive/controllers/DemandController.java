@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/demands")
@@ -58,5 +59,10 @@ public class DemandController {
 //        timer
         return equipmentDemandService.save(equipmentDemand1);
 
+    }
+
+    @PostMapping("/decline/{id}")
+    public Map<String, Object> declineDemand(@PathVariable Long id){
+       return demandService.declineDemand(id);
     }
 }

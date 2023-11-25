@@ -28,6 +28,7 @@ public class Demand {
 
     private LocalDate startDate;
 
+    @Enumerated(EnumType.ORDINAL)
     private DemandStatus status;
 
     @JsonProperty("endDate")
