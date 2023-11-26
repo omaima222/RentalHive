@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EquipmentDemandService {
@@ -19,8 +20,8 @@ public class EquipmentDemandService {
     public EquipmentDemand save(EquipmentDemand equipmentDemand){
         return equipmentDemandRepository.save(equipmentDemand);
     }
-    public List <EquipmentDemand>  checkAvailability(LocalDate startDate, LocalDate endDate , Equipment equipment) throws ParseException {
-        List <EquipmentDemand>   equipmentDemand = equipmentDemandRepository.checkAvailability(startDate,endDate,equipment);
+    public Optional<List<EquipmentDemand>> checkAvailability(LocalDate startDate, LocalDate endDate , Long equipment) throws ParseException {
+        Optional<List<EquipmentDemand>> equipmentDemand = Optional.ofNullable(equipmentDemandRepository.checkAvailability(startDate,endDate,equipment));
         return equipmentDemand;
     }
 }

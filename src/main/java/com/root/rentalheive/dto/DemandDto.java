@@ -18,8 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 public class DemandDto {
     Long userId;
-    LocalDate DemandedDate;
+    LocalDate startDate;
     LocalDate endDate;
-    Integer duration;
-    Long equipmentId;
+    Long[] equipmentsIds;
 }

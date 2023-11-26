@@ -36,7 +36,6 @@ public class Demand {
 
     @OneToOne
     @JoinColumn(name = "devis_id")
-    @JsonIgnore
     private Devis devis;
 
     @Nullable

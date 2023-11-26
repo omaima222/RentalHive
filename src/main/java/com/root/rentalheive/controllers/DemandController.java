@@ -8,7 +8,10 @@ import com.root.rentalheive.services.DemandService;
 import com.root.rentalheive.services.EquipmentDemandService;
 import com.root.rentalheive.services.EquipmentService;
 import com.root.rentalheive.services.UserService;
+import com.root.rentalheive.utils.ResponseManager;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -16,9 +19,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/demands")
@@ -36,28 +37,32 @@ public class DemandController {
     }
 
     @PostMapping("")
-    public   EquipmentDemand save(@RequestBody DemandDto demandDto) throws ParseException {
-
+    public ResponseEntity<Demand> save(@RequestBody DemandDto demandDto) throws ParseException {
+        Arrays.asList(demandDto.getEquipmentsIds()).stream().forEach(equipmentId -> {
+            try {
+                Optional<List<EquipmentDemand>> equipmentDemand = equipmentDemandService.checkAvailability(demandDto.getStartDate(), demandDto.getEndDate(), equipmentId);
+                if (equipmentDemand.isPresent()) {
+                   return ResponseManager.create("One of the equipments is already borrowed", HttpStatus.METHOD_NOT_ALLOWED);
+                }
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        });
 //        Demand demand = Demand.builder()
-//                .user(userService.getUserById(1L)).
-//                startDate(Date.valueOf("2023-11-20"))
+//                .user(userService.getUserById(1L))
+//                .startDate(demandDto.getStartDate())
+//                .endDate(demandDto.getEndDate())
 //                .build();
-//        Long id =demandService.save(demand).getId();
-        Equipment equipment = equipmentService.getEquipmentById((Long) demandDto.getEquipmentId());
-        List<EquipmentDemand> validity1 = equipmentDemandService.checkAvailability(demandDto.getDemandedDate(), demandDto.getEndDate(), equipment);
-        if (validity1.size()>0){
-            return null;
-        }
-        EquipmentDemand equipmentDemand1 = EquipmentDemand.builder()
-                .startDate(demandDto.getDemandedDate())
-                .endDate(demandDto.getEndDate())
-                .demand(demandService.getDemandById(1L))
-                .equipment(equipmentService.getEquipmentById(demandDto.getEquipmentId()))
-                .build();
-// model mapper
-//        track equipment
-//        timer
-        return equipmentDemandService.save(equipmentDemand1);
+//        Demand myDemand =demandService.save(demand);
+//        EquipmentDemand equipmentDemand1 = EquipmentDemand.builder()
+//                .startDate(demandDto.getDemandedDate())
+//                .endDate(demandDto.getEndDate())
+//                .demand(demandService.getDemandById(1L))
+//                .equipment(equipmentService.getEquipmentById(demandDto.getEquipmentId()))
+//                .build();
+//          model mapper
+//          track equipment
+//          timer
 
     }
 
