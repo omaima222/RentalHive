@@ -2,6 +2,7 @@ package com.root.rentalheive.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +25,9 @@ public class Equipment {
     private Long id;
 
     private String name;
+
+    @Column(name = "price_per_day")
+    private float pricePerDay;
 
     private LocalDate creationDate;
 

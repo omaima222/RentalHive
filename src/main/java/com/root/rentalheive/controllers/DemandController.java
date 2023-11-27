@@ -27,7 +27,6 @@ public class DemandController {
     UserService userService;
     EquipmentService equipmentService;
     EquipmentDemandService equipmentDemandService;
-
     public DemandController(DemandService demandService, UserService userService, EquipmentService equipmentService ,EquipmentDemandService equipmentDemandService) {
         this.demandService = demandService;
         this.userService = userService;
