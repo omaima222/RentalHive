@@ -30,7 +30,6 @@ import java.util.Objects;
 public class Deviscontroller {
 
     DevisService devisService;
-    @Autowired
     public Deviscontroller(DevisService devisService){this.devisService = devisService;}
 
     @GetMapping("")
@@ -78,7 +77,7 @@ public class Deviscontroller {
       return   this.devisService.sendAgreementWithEmail(devis);
 
     }
-    @PostMapping("/accept/{id}")
+    @PostMapping("/decline/{id}")
     public Devis declineDevis(@PathVariable Long id) throws IOException, DocumentException {
       return devisService.declineDevis(id);
 

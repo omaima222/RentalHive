@@ -5,6 +5,7 @@ import com.root.rentalheive.entities.Demand;
 import com.root.rentalheive.entities.Equipment;
 import com.root.rentalheive.entities.EquipmentDemand;
 import com.root.rentalheive.exception.EquipmentReserved;
+import com.root.rentalheive.exception.InvalidDateException;
 import com.root.rentalheive.services.DemandService;
 import com.root.rentalheive.services.EquipmentDemandService;
 import com.root.rentalheive.services.EquipmentService;
@@ -38,22 +39,20 @@ public class DemandController {
 
     @PostMapping("")
     public ResponseEntity<Demand> save(@RequestBody DemandDto demandDto) throws ParseException {
-        if(demandDto.getEndDate().isBefore(demandDto.getStartDate())){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
         demandService.isEquipmentAvailable(demandDto);
         Demand demand = Demand.builder()
                 .user(userService.getUserById(1L))
-                .startDate(demandDto.getStartDate())
-                .endDate(demandDto.getEndDate())
                 .build();
         Demand myDemand = demandService.save(demand);
-        Arrays.stream(demandDto.getEquipmentsIds()).forEach(equipmentId -> {
+        Arrays.stream(demandDto.getDemands()).forEach(Tdemand -> {
+            if(Tdemand.getEndDate().isBefore(Tdemand.getStartDate())){
+                throw new InvalidDateException("Invalid Date range"+Tdemand.getStartDate()+" "+Tdemand.getEndDate());
+            }
             EquipmentDemand equipmentDemand1 = EquipmentDemand.builder()
-                    .startDate(demandDto.getStartDate())
-                    .endDate(demandDto.getEndDate())
+                    .startDate(Tdemand.getStartDate())
+                    .endDate(Tdemand.getEndDate())
                     .demand(myDemand)
-                    .equipment(equipmentService.getEquipmentById(equipmentId))
+                    .equipment(equipmentService.getEquipmentById(Tdemand.getEquipmentId()))
                     .build();
             equipmentDemandService.save(equipmentDemand1);
         });

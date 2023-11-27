@@ -32,11 +32,11 @@ public class DemandService {
         return demandeRepository.getDemandById(id);
     }
     public Boolean isEquipmentAvailable(DemandDto demandDto){
-        Arrays.stream(demandDto.getEquipmentsIds()).forEach(equipmentId -> {
+        Arrays.stream(demandDto.getDemands()).forEach(Tdemand -> {
             try {
-                Optional<Long> equipmentDemand = equipmentDemandService.checkAvailability(demandDto.getStartDate(), demandDto.getEndDate(), equipmentId);
+                Optional<Long> equipmentDemand = equipmentDemandService.checkAvailability(Tdemand.getStartDate(), Tdemand.getEndDate(), Tdemand.getEquipmentId());
                 if (equipmentDemand.isPresent()) {
-                    Equipment equipment = equipmentService.getEquipmentById(equipmentId);
+                    Equipment equipment = equipmentService.getEquipmentById(Tdemand.getEquipmentId());
                     throw new EquipmentReserved("Equipment " + equipment.getName() + " is reserved");
                 }
             } catch (ParseException e) {

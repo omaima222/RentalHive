@@ -11,10 +11,7 @@ import java.util.Date;
 public class EquipmentDemandDto {
     @Nullable
     Long id;
-    Integer duration;
-    DemandDto demandDto;
-    EquipmentDto equipmentDto;
+    Long equipmentId;
     LocalDate endDate;
-    LocalDate starDate;
-
+    LocalDate startDate;
 }

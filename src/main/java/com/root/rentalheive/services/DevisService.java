@@ -65,21 +65,15 @@ public class DevisService {
     }
 
     public ResponseEntity<FileSystemResource> sendAgreementWithEmail(Devis devis) throws DocumentException, IOException {
-
         Map<String, Object> devisMap = devis.toMap();
-
-
         String localFolderPath = "com/root/rentalheive/pdfs/";
-
         ByteArrayOutputStream pdfStream = PdfAgreement.generatePdfStream(devisMap, "RENTAL AGREEMENT");
         String fileName = "agreement.pdf";
         String filePath = localFolderPath + fileName;
         try (FileOutputStream fos = new FileOutputStream(filePath)) {
             fos.write(pdfStream.toByteArray());
         }
-
         FileSystemResource file = new FileSystemResource(new File(filePath));
-
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);

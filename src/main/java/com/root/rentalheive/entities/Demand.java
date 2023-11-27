@@ -26,13 +26,10 @@ public class Demand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
 
-    private LocalDate startDate;
 
     @Enumerated(EnumType.ORDINAL)
     private DemandStatus status;
 
-    @JsonProperty("endDate")
-    private LocalDate endDate;
 
     @OneToOne
     @JoinColumn(name = "devis_id")
