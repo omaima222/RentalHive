@@ -6,7 +6,9 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +44,9 @@ public class EquipmentDemand {
         Map<String, Object> map = new HashMap<>();
         map.put("Name", this.getEquipment().getName());
         map.put("Type", this.getEquipment().getType().getName());
+        map.put("Price per day", this.getEquipment().getPricePerDay());
+        map.put("End Date", this.endDate);
+        map.put("Duration in (days)", ChronoUnit.DAYS.between(this.startDate, this.endDate));
 
         return map;
     }

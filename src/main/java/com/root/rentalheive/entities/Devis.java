@@ -6,10 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import com.root.rentalheive.enums.DevisStatus;
 import java.time.LocalDate;
 import java.util.Date;
@@ -21,6 +18,9 @@ import java.util.stream.Collectors;
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Devis {
 
@@ -30,30 +30,27 @@ public class Devis {
 
         private float price;
 
-//        @Enumerated(EnumType.STRING)
-//        @Column(name="status")
+        @Enumerated(EnumType.ORDINAL)
+        @Column(name="status")
         private DevisStatus status;
 
-        @OneToOne
+        @OneToOne(fetch = FetchType.EAGER)
         @Nullable
         @JoinColumn(name = "demand_id")
-        @JsonIgnore
         private Demand demand;
 
         @OneToOne
         @JoinColumn(name = "offer_id")
-        @JsonIgnore
         private Offer offer;
 
         public Map<String, Object> toMap() {
-
-
                 List<Map<String, Object>> equipmentsList = this.demand.getEquipmentDemands().stream().map(x->x.toMap()).collect(Collectors.toList());
-
+                float totalPrice =  equipmentsList.stream().map(x->(float)x.get("Price per day")* (Long)x.get("Duration in (days)")).reduce(0f, (a, b) -> a + b);
+//                System.out.println(totalPrice);
                 Map<String, Object> map = new HashMap<>();
                 map.put("Equipment(s)", equipmentsList);
-                map.put("Total price", this.price);
-                map.put("Demand date", this.demand.getStartDate());
+                map.put("Total price", totalPrice+" DMA");
+//              map.put("Demand date", this.demand.getEquipmentDemands().);
 
                 return map;
         }
