@@ -26,6 +26,12 @@ public class OfferService {
     private JavaMailSender mailSender;
 
     public List<Offer> getOffers(){return this.offerRepository.findAll();}
+    public Offer getOfferById(Long id){
+        if(this.offerRepository.findById(id).isPresent()){
+            return this.offerRepository.findById(id).get();
+        }
+        return null;
+    }
 
     public Offer saveOffer(Long devis_id){
         Devis devis = this.devisRepository.findById(devis_id).get();

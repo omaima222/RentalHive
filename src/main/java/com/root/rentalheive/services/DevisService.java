@@ -3,6 +3,7 @@ package com.root.rentalheive.services;
 import com.itextpdf.text.DocumentException;
 import com.root.rentalheive.entities.Demand;
 import com.root.rentalheive.entities.Devis;
+import com.root.rentalheive.enums.DevisStatus;
 import com.root.rentalheive.repositories.DemandeRepository;
 import com.root.rentalheive.repositories.DevisRepository;
 import com.root.rentalheive.utils.PdfAgreement;
@@ -104,6 +105,12 @@ public class DevisService {
     public  void deleteDevis(Long id){
         Devis devis = this.devisRepository.findById(id).get();
         this.devisRepository.delete(devis);
+    }
+
+    public  Devis declineDevis(Long id){
+        Devis devis = this.devisRepository.findById(id).get();
+        devis.setStatus(DevisStatus.DECLINED);
+        return this.devisRepository.save(devis);
     }
 
     public Devis getDevisById(Long id){

@@ -31,6 +31,10 @@ public class OfferController {
     public List<Offer> getOffers(){
         return offerService.getOffers();
     }
+    @GetMapping("{id}")
+    public Offer getOfferById(@PathVariable Long id){
+        return offerService.getOfferById(id);
+    }
 
     @GetMapping("/{id}/send")
     public void sendOffer(@PathVariable Long id){
