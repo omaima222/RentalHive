@@ -20,8 +20,11 @@ public class EquipmentDemandService {
     public EquipmentDemand save(EquipmentDemand equipmentDemand){
         return equipmentDemandRepository.save(equipmentDemand);
     }
-    public Optional<List<EquipmentDemand>> checkAvailability(LocalDate startDate, LocalDate endDate , Long equipment) throws ParseException {
-        Optional<List<EquipmentDemand>> equipmentDemand = Optional.ofNullable(equipmentDemandRepository.checkAvailability(startDate,endDate,equipment));
+    public Optional<Long> checkAvailability(LocalDate startDate, LocalDate endDate , Long equipment) throws ParseException {
+        Optional<Long> equipmentDemand = Optional.ofNullable(equipmentDemandRepository.checkAvailability(startDate,endDate,equipment));
         return equipmentDemand;
+    }
+    public List<EquipmentDemand> getAllEquipmentDemand(){
+        return equipmentDemandRepository.getAll();
     }
 }

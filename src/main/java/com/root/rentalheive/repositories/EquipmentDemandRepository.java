@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EquipmentDemandRepository extends JpaRepository<EquipmentDemand,Long> {
-    @Query("SELECT r FROM EquipmentDemand r  WHERE r.equipment.id = :equipment AND (:endDate > r.startDate AND :startDate < r.endDate)")
-    public List<EquipmentDemand>  checkAvailability(LocalDate startDate, LocalDate endDate, Long equipment);
+    @Query("SELECT MAX(r.id) FROM EquipmentDemand r  WHERE r.equipment.id = :equipment AND (:endDate > r.startDate AND :startDate < r.endDate)")
+    public Long  checkAvailability(LocalDate startDate, LocalDate endDate, Long equipment);
     public List<EquipmentDemand> findByEquipment(Equipment equipment);
+    @Query("SELECT  r FROM EquipmentDemand r ORDER BY r.equipment.id")
+    public List<EquipmentDemand> getAll();
 }

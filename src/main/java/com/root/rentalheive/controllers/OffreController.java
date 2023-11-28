@@ -1,8 +1,10 @@
 package com.root.rentalheive.controllers;
 
+import com.root.rentalheive.dto.OfferDto;
 import com.root.rentalheive.entities.Offer;
 import com.root.rentalheive.services.OffreService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -4,6 +4,7 @@ import com.root.rentalheive.dto.DemandDto;
 import com.root.rentalheive.entities.Demand;
 import com.root.rentalheive.entities.Equipment;
 import com.root.rentalheive.entities.EquipmentDemand;
+import com.root.rentalheive.exception.EquipmentReserved;
 import com.root.rentalheive.services.DemandService;
 import com.root.rentalheive.services.EquipmentDemandService;
 import com.root.rentalheive.services.EquipmentService;
@@ -28,46 +29,42 @@ public class DemandController {
     UserService userService;
     EquipmentService equipmentService;
     EquipmentDemandService equipmentDemandService;
-
-    public DemandController(DemandService demandService, UserService userService, EquipmentService equipmentService ,EquipmentDemandService equipmentDemandService) {
+    public DemandController(DemandService demandService, UserService userService, EquipmentService equipmentService, EquipmentDemandService equipmentDemandService) {
         this.demandService = demandService;
         this.userService = userService;
-        this.equipmentService=equipmentService;
-        this.equipmentDemandService=equipmentDemandService;
+        this.equipmentService = equipmentService;
+        this.equipmentDemandService = equipmentDemandService;
     }
 
     @PostMapping("")
     public ResponseEntity<Demand> save(@RequestBody DemandDto demandDto) throws ParseException {
-        Arrays.asList(demandDto.getEquipmentsIds()).stream().forEach(equipmentId -> {
-            try {
-                Optional<List<EquipmentDemand>> equipmentDemand = equipmentDemandService.checkAvailability(demandDto.getStartDate(), demandDto.getEndDate(), equipmentId);
-                if (equipmentDemand.isPresent()) {
-                   return ResponseManager.create("One of the equipments is already borrowed", HttpStatus.METHOD_NOT_ALLOWED);
-                }
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
+        if(demandDto.getEndDate().isBefore(demandDto.getStartDate())){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        demandService.isEquipmentAvailable(demandDto);
+        Demand demand = Demand.builder()
+                .user(userService.getUserById(1L))
+                .startDate(demandDto.getStartDate())
+                .endDate(demandDto.getEndDate())
+                .build();
+        Demand myDemand = demandService.save(demand);
+        Arrays.stream(demandDto.getEquipmentsIds()).forEach(equipmentId -> {
+            EquipmentDemand equipmentDemand1 = EquipmentDemand.builder()
+                    .startDate(demandDto.getStartDate())
+                    .endDate(demandDto.getEndDate())
+                    .demand(myDemand)
+                    .equipment(equipmentService.getEquipmentById(equipmentId))
+                    .build();
+            equipmentDemandService.save(equipmentDemand1);
         });
-//        Demand demand = Demand.builder()
-//                .user(userService.getUserById(1L))
-//                .startDate(demandDto.getStartDate())
-//                .endDate(demandDto.getEndDate())
-//                .build();
-//        Demand myDemand =demandService.save(demand);
-//        EquipmentDemand equipmentDemand1 = EquipmentDemand.builder()
-//                .startDate(demandDto.getDemandedDate())
-//                .endDate(demandDto.getEndDate())
-//                .demand(demandService.getDemandById(1L))
-//                .equipment(equipmentService.getEquipmentById(demandDto.getEquipmentId()))
-//                .build();
-//          model mapper
-//          track equipment
-//          timer
-
+//        model mapper
+//        track equipment
+//        timer
+        return new ResponseEntity<>(myDemand,HttpStatus.OK);
     }
 
     @PostMapping("/decline/{id}")
-    public Map<String, Object> declineDemand(@PathVariable Long id){
-       return demandService.declineDemand(id);
+    public Map<String, Object> declineDemand(@PathVariable Long id) {
+        return demandService.declineDemand(id);
     }
 }
