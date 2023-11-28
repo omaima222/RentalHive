@@ -34,6 +34,15 @@ public class DemandController {
         this.equipmentDemandService=equipmentDemandService;
     }
 
+    @GetMapping("")
+    public List<Demand> getAll(){
+        return demandService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public Demand getDemadById(@PathVariable Long id){
+        return demandService.getDemandById(id);
+    }
     @PostMapping("")
     public   EquipmentDemand save(@RequestBody DemandDto demandDto) throws ParseException {
 

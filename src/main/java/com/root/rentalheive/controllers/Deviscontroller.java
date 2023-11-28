@@ -78,6 +78,11 @@ public class Deviscontroller {
       return   this.devisService.sendAgreementWithEmail(devis);
 
     }
+    @PostMapping("/accept/{id}")
+    public Devis declineDevis(@PathVariable Long id) throws IOException, DocumentException {
+      return devisService.declineDevis(id);
+
+    }
     @DeleteMapping("/{id}")
     public void deleteDevis(@PathVariable long id){
         this.devisService.deleteDevis(id);

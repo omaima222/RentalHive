@@ -6,6 +6,7 @@ import com.root.rentalheive.repositories.DemandeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -37,5 +38,9 @@ public class DemandService {
 
         return response;
 
+    }
+
+    public List<Demand> getAll() {
+        return demandeRepository.findAll();
     }
 }
