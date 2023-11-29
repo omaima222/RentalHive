@@ -3,18 +3,15 @@ package com.root.rentalheive.controllers;
 import com.itextpdf.text.DocumentException;
 import com.root.rentalheive.dto.DevisDto;
 import com.root.rentalheive.entities.Devis;
-import com.root.rentalheive.services.DevisService;
-import com.root.rentalheive.utils.PdfAgreement;
+import com.root.rentalheive.services.DevisServiceImp;
+import com.root.rentalheive.services.interfaces.DevisService;
 import com.root.rentalheive.utils.PdfGenerator;
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayOutputStream;
@@ -23,7 +20,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/devis")

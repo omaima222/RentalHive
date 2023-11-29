@@ -1,6 +1,7 @@
 package com.root.rentalheive.controllers;
 import com.root.rentalheive.entities.Type;
-import com.root.rentalheive.services.TypeServices;
+import com.root.rentalheive.services.TypeServicesImp;
+import com.root.rentalheive.services.interfaces.TypeServices;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 

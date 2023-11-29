@@ -2,13 +2,11 @@ package com.root.rentalheive.controllers;
 
 import com.root.rentalheive.dto.EquipmentDto;
 import com.root.rentalheive.entities.Equipment;
-import com.root.rentalheive.services.EquipmentService;
-import com.root.rentalheive.services.TypeServices;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.root.rentalheive.services.TypeServicesImp;
+import com.root.rentalheive.services.interfaces.EquipmentService;
+import com.root.rentalheive.services.interfaces.TypeServices;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RestController
