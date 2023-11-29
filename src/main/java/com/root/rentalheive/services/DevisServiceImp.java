@@ -6,6 +6,7 @@ import com.root.rentalheive.entities.Devis;
 import com.root.rentalheive.enums.DevisStatus;
 import com.root.rentalheive.repositories.DemandeRepository;
 import com.root.rentalheive.repositories.DevisRepository;
+import com.root.rentalheive.services.interfaces.DevisService;
 import com.root.rentalheive.utils.PdfAgreement;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -26,23 +27,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-@Service
-public class DevisService {
+public class DevisServiceImp implements DevisService {
 
     DevisRepository devisRepository;
     DemandeRepository demandeRepository;
 
-    @Autowired
     private JavaMailSender mailSender;
 
     @Autowired
-    public DevisService(DevisRepository devisRepository, DemandeRepository demandeRepository){
+    public DevisServiceImp(DevisRepository devisRepository, DemandeRepository demandeRepository,JavaMailSender mailSender){
         this.devisRepository = devisRepository;
         this.demandeRepository = demandeRepository;
+        this.mailSender = mailSender;
     }
 
+    @Override
     public List<Devis>getDevis(){return this.devisRepository.findAll();}
 
+    @Override
     public Devis saveDevis(Date date, float price, Long demand_id){
         Demand demand = this.demandeRepository.findById(demand_id).get();
         Devis devis = new Devis();
@@ -51,7 +53,7 @@ public class DevisService {
         return this.devisRepository.save(devis);
     }
 
-
+    @Override
     public void sendDevis(Long id){
         Devis devis = this.devisRepository.findById(id).get();
 
@@ -64,6 +66,7 @@ public class DevisService {
         mailSender.send(message);
     }
 
+    @Override
     public ResponseEntity<FileSystemResource> sendAgreementWithEmail(Devis devis) throws DocumentException, IOException {
         Map<String, Object> devisMap = devis.toMap();
         String localFolderPath = "com/root/rentalheive/pdfs/";
@@ -96,17 +99,20 @@ public class DevisService {
     }
 
 
+    @Override
     public  void deleteDevis(Long id){
         Devis devis = this.devisRepository.findById(id).get();
         this.devisRepository.delete(devis);
     }
 
+    @Override
     public  Devis declineDevis(Long id){
         Devis devis = this.devisRepository.findById(id).get();
         devis.setStatus(DevisStatus.DECLINED);
         return this.devisRepository.save(devis);
     }
 
+    @Override
     public Devis getDevisById(Long id){
         return this.devisRepository.findById(id).get();
     }

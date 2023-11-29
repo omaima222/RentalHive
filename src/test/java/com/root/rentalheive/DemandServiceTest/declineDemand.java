@@ -1,12 +1,9 @@
 package com.root.rentalheive.DemandServiceTest;
 
 import com.root.rentalheive.entities.Demand;
-import com.root.rentalheive.entities.User;
 import com.root.rentalheive.enums.DemandStatus;
 import com.root.rentalheive.repositories.DemandeRepository;
-import com.root.rentalheive.repositories.UserRepository;
-import com.root.rentalheive.services.DemandService;
-import com.root.rentalheive.services.UserService;
+import com.root.rentalheive.services.DemandServiceImp;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,7 +25,7 @@ public class declineDemand {
     private DemandeRepository demandeRepository;
 
     @InjectMocks
-    private DemandService demandService;
+    private DemandServiceImp demandService;
     @Test
     public void declineExistingDemand() {
 //        Long id = 1L;

@@ -1,50 +1,33 @@
 package com.root.rentalheive.services;
 
-import com.root.rentalheive.dto.DemandDto;
 import com.root.rentalheive.entities.Demand;
-import com.root.rentalheive.entities.Equipment;
 import com.root.rentalheive.enums.DemandStatus;
-import com.root.rentalheive.exception.EquipmentReserved;
 import com.root.rentalheive.repositories.DemandeRepository;
+import com.root.rentalheive.services.interfaces.DemandService;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
-@Service
-public class DemandService {
+
+public class DemandServiceImp implements DemandService {
     DemandeRepository demandeRepository;
-    EquipmentDemandService equipmentDemandService;
-    EquipmentService equipmentService;
-    DemandService(DemandeRepository demandeRepository,EquipmentDemandService equipmentDemandService, EquipmentService equipmentService){
-        this.equipmentDemandService = equipmentDemandService;
+    DemandServiceImp(DemandeRepository demandeRepository){
         this.demandeRepository = demandeRepository;
-        this.equipmentService = equipmentService;
     }
+
+    @Override
     public Demand save(Demand demand){
         return demandeRepository.save(demand);
     }
+
+    @Override
     public Demand getDemandById(Long id){
         return demandeRepository.getDemandById(id);
     }
-    public Boolean isEquipmentAvailable(DemandDto demandDto){
-        Arrays.stream(demandDto.getDemands()).forEach(Tdemand -> {
-            try {
-                Optional<Long> equipmentDemand = equipmentDemandService.checkAvailability(Tdemand.getStartDate(), Tdemand.getEndDate(), Tdemand.getEquipmentId());
-                if (equipmentDemand.isPresent()) {
-                    Equipment equipment = equipmentService.getEquipmentById(Tdemand.getEquipmentId());
-                    throw new EquipmentReserved("Equipment " + equipment.getName() + " is reserved");
-                }
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        return true;
-    }
+
+    @Override
     public Map<String, Object> declineDemand(Long id){
         int rowsUpdated = demandeRepository.declineDemand(id, DemandStatus.DECLINED);
 
@@ -64,6 +47,7 @@ public class DemandService {
 
     }
 
+    @Override
     public List<Demand> getAll() {
         return demandeRepository.findAll();
     }
