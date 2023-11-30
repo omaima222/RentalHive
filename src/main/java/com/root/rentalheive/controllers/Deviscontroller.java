@@ -32,6 +32,10 @@ public class Deviscontroller {
     public List<Devis> getDevis(){
         return devisService.getDevis();
     }
+
+    @GetMapping("/user/{id}")
+    public List<Devis> getDevisByUser(@PathVariable Long id){return devisService.getDevisByUser(id);}
+
     @GetMapping("/{id}")
     public Devis getDevisById(@PathVariable Long id){
         return this.devisService.getDevisById(id);

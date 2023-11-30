@@ -21,6 +21,8 @@ public interface DevisService {
     Devis declineDevis(Long id);
     Devis getDevisById(Long id);
 
+    List<Devis> getDevisByUser(Long id);
+
 
 
 
