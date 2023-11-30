@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+@Service
 public class DevisServiceImp implements DevisService {
 
     DevisRepository devisRepository;

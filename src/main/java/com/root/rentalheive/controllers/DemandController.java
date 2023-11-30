@@ -38,7 +38,7 @@ public class DemandController {
     public Demand getDemadById(@PathVariable Long id){
         return demandService.getDemandById(id);
     }
-    @PostMapping("")
+    /*@PostMapping("")
     public   EquipmentDemand save(@RequestBody DemandDto demandDto) throws ParseException {
 
         Equipment equipment = equipmentService.getEquipmentById((Long) demandDto.getEquipmentId());
@@ -54,7 +54,7 @@ public class DemandController {
                 .build();
         return equipmentDemandService.save(equipmentDemand1);
 
-    }
+    }*/
 
     @PostMapping("/decline/{id}")
     public Map<String, Object> declineDemand(@PathVariable Long id){
