@@ -12,10 +12,10 @@ import java.util.Optional;
 
 public interface EquipmentDemandRepository extends JpaRepository<EquipmentDemand,Long> {
     //@Query("SELECT r FROM EquipmentDemand r  WHERE r.equipment = :equipment AND (:endDate is not bettween r.startDate AND r.endDate ) and   (:startDate is not bettween r.startDate AND r.endDate )")
-    @Query("SELECT r FROM EquipmentDemand r WHERE r.equipment = :equipment AND " +
-            "(:endDate NOT BETWEEN r.startDate AND r.endDate) AND " +
-            "(:startDate NOT BETWEEN r.startDate AND r.endDate)")
-    public List<EquipmentDemand>   checkAvailability(LocalDate startDate, LocalDate endDate,Equipment  equipment);
+    @Query("SELECT max(r.id) FROM EquipmentDemand r " +
+            "WHERE r.equipment = :equipment " +
+            "AND (:endDate > r.startDate AND :startDate < r.endDate)")
+    public Long  checkAvailability(LocalDate startDate, LocalDate endDate,Equipment  equipment);
     public List<EquipmentDemand> findByEquipment(Equipment equipment);
     @Query("SELECT  r FROM EquipmentDemand r ORDER BY r.equipment.id")
     public List<EquipmentDemand> getAll();

@@ -2,7 +2,6 @@ package com.root.rentalheive.controllers;
 
 import com.root.rentalheive.dto.EquipmentDto;
 import com.root.rentalheive.entities.Equipment;
-import com.root.rentalheive.services.TypeServicesImp;
 import com.root.rentalheive.services.interfaces.EquipmentService;
 import com.root.rentalheive.services.interfaces.TypeServices;
 import org.springframework.web.bind.annotation.*;
@@ -15,20 +14,20 @@ public class EquipmentController {
 
     TypeServices typeServices;
 
-    EquipmentService equipmentServices;
+    EquipmentService equipmentService;
 
-    public EquipmentController(EquipmentService equipmentServices, TypeServices typeServices) {
-        this.equipmentServices = equipmentServices;
+    public EquipmentController(EquipmentService equipmentService, TypeServices typeServices) {
+        this.equipmentService = equipmentService;
         this.typeServices = typeServices;
     }
 
     @GetMapping("")
     public List<Equipment> getEquipments(){
-        return equipmentServices.getEquipments();
+        return equipmentService.getEquipments();
     }
     @GetMapping("/{name}")
     public Equipment getEquipment(@PathVariable String name){
-        return equipmentServices.getEquipmentByName(name);
+        return equipmentService.getEquipmentByName(name);
     }
 
     @PostMapping("")
@@ -38,19 +37,19 @@ public class EquipmentController {
 //                .creationDate(Date.from(LocalDate.now()))
                 .type(typeServices.findById(equipmentDto.getTypeId()))
                 .build();
-        return equipmentServices.saveEquipment(equipment);
+        return equipmentService.saveEquipment(equipment);
     }
 
     @PutMapping("")
     public Equipment updateEquipment(@RequestBody EquipmentDto equipmentdto){
-        Equipment equipment=equipmentServices.getEquipmentById(equipmentdto.getId());
+        Equipment equipment= equipmentService.getEquipmentById(equipmentdto.getId());
         equipment.setName(equipmentdto.getName());
         equipment.setType(typeServices.findById(equipmentdto.getTypeId()));
-        return equipmentServices.updateEquipment(equipment);
+        return equipmentService.updateEquipment(equipment);
     }
 
     @DeleteMapping("/{id}")
     public void deleteEquipment(@PathVariable Long id){
-        equipmentServices.deleteEquipment(equipmentServices.getEquipmentById(id));
+        equipmentService.deleteEquipment(equipmentService.getEquipmentById(id));
     }
 }
