@@ -46,7 +46,7 @@ public class EquipmentDemand {
         map.put("Type", this.getEquipment().getType().getName());
         map.put("Price per day", this.getEquipment().getPricePerDay());
         map.put("End Date", this.endDate);
-        map.put("Duration in (days)", ChronoUnit.DAYS.between(this.startDate, this.endDate));
+        //map.put("Duration in (days)", ChronoUnit.DAYS.between(this.startDate, this.endDate));
 
         return map;
     }

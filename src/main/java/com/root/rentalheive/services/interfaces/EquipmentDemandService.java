@@ -13,6 +13,6 @@ import java.util.Optional;
 public interface EquipmentDemandService {
     EquipmentDemand save(EquipmentDemand equipmentDemand);
     List<EquipmentDemand> getAllEquipmentDemand();
-    Optional<Long> checkAvailability(LocalDate startDate, LocalDate endDate , Long equipment) throws ParseException;
-   // List<EquipmentDemand> checkAvailability(LocalDate startDate, LocalDate endDate , Equipment equipment) throws ParseException;
+  //  Optional<Long> checkAvailability(LocalDate startDate, LocalDate endDate , Long equipment) throws ParseException;
+    List<EquipmentDemand> checkAvailability(LocalDate startDate, LocalDate endDate , Equipment equipment) throws ParseException;
 }

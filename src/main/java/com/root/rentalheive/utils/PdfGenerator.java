@@ -33,17 +33,17 @@ public class PdfGenerator {
             if (columnName.equals("Equipment(s)")) {
                 if (value instanceof List) {
                     List<Map<String, Object>> equipmentList = (List<Map<String, Object>>) value;
-                    PdfPTable table = new PdfPTable(3);
+                    PdfPTable table = new PdfPTable(2);
                     table.addCell("Name");
                     table.addCell("Type");
-                    table.addCell("Duration");
+//                    table.addCell("Duration");
                     for (Map<String, Object> equipmentInfo : equipmentList) {
                         table.setWidthPercentage(100);
                         table.setSpacingBefore(10f);
 
                         table.addCell(equipmentInfo.get("Name").toString());
                         table.addCell(equipmentInfo.get("Type").toString());
-                        table.addCell(equipmentInfo.get("Duration").toString());
+//                        table.addCell(equipmentInfo.get("Duration in (days)").toString());
                     }
                     document.add(table);
                 }

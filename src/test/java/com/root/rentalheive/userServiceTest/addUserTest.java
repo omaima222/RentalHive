@@ -2,7 +2,7 @@ package com.root.rentalheive.userServiceTest;
 
 import com.root.rentalheive.entities.User;
 import com.root.rentalheive.repositories.UserRepository;
-import com.root.rentalheive.services.UserService;
+import com.root.rentalheive.services.interfaces.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

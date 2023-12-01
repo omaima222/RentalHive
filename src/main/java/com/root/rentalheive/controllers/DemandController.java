@@ -5,7 +5,7 @@ import com.root.rentalheive.entities.Demand;
 import com.root.rentalheive.entities.Equipment;
 import com.root.rentalheive.entities.EquipmentDemand;
 import com.root.rentalheive.services.EquipmentDemandServiceImp;
-import com.root.rentalheive.services.UserService;
+import com.root.rentalheive.services.interfaces.UserService;
 import com.root.rentalheive.services.interfaces.DemandService;
 import com.root.rentalheive.services.interfaces.EquipmentDemandService;
 import com.root.rentalheive.services.interfaces.EquipmentService;
@@ -38,12 +38,12 @@ public class DemandController {
     public Demand getDemadById(@PathVariable Long id){
         return demandService.getDemandById(id);
     }
-    /*@PostMapping("")
-    public   EquipmentDemand save(@RequestBody DemandDto demandDto) throws ParseException {
+    @PostMapping("")
+    public  EquipmentDemand save(@RequestBody DemandDto demandDto) throws ParseException {
 
         Equipment equipment = equipmentService.getEquipmentById((Long) demandDto.getEquipmentId());
-        List<EquipmentDemand> validity1 = equipmentDemandService.checkAvailability(demandDto.getDemandedDate(), demandDto.getEndDate(), equipment);
-        if (validity1.size()>0){
+        List<EquipmentDemand>  validity1 = equipmentDemandService.checkAvailability(demandDto.getDemandedDate(), demandDto.getEndDate(), equipment);
+        if (!validity1.isEmpty()){
             return null;
         }
         EquipmentDemand equipmentDemand1 = EquipmentDemand.builder()
@@ -54,7 +54,7 @@ public class DemandController {
                 .build();
         return equipmentDemandService.save(equipmentDemand1);
 
-    }*/
+    }
 
     @PostMapping("/decline/{id}")
     public Map<String, Object> declineDemand(@PathVariable Long id){

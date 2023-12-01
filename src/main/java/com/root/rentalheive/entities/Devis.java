@@ -49,11 +49,11 @@ public class Devis {
 
         public Map<String, Object> toMap() {
                 List<Map<String, Object>> equipmentsList = this.demand.getEquipmentDemands().stream().map(x->x.toMap()).collect(Collectors.toList());
-                float totalPrice =  equipmentsList.stream().map(x->(float)x.get("Price per day")* (Long)x.get("Duration in (days)")).reduce(0f, (a, b) -> a + b);
+//                float totalPrice =  equipmentsList.stream().map(x->(float)x.get("Price per day")* (Long)x.get("Duration in (days)")).reduce(0f, (a, b) -> a + b);
 //                System.out.println(totalPrice);
                 Map<String, Object> map = new HashMap<>();
                 map.put("Equipment(s)", equipmentsList);
-                map.put("Total price", totalPrice+" DMA");
+                map.put("Total price"," DMA");//Duration in (days)
 //              map.put("Demand date", this.demand.getEquipmentDemands().);
 
                 return map;

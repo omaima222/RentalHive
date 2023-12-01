@@ -20,11 +20,16 @@ public class EquipmentDemandServiceImp implements EquipmentDemandService {
     public EquipmentDemand save(EquipmentDemand equipmentDemand){
         return equipmentDemandRepository.save(equipmentDemand);
     }
-    public Optional<Long> checkAvailability(LocalDate startDate, LocalDate endDate , Long equipment) throws ParseException {
-        Optional<Long> equipmentDemand = Optional.ofNullable(equipmentDemandRepository.checkAvailability(startDate,endDate,equipment));
+   /* public List<EquipmentDemand>  checkAvailability(LocalDate startDate, LocalDate endDate , Long equipment) throws ParseException {
+        List<EquipmentDemand>  equipmentDemand = equipmentDemandRepository.checkAvailability(startDate,endDate,equipment);
         return equipmentDemand;
-    }
+    }*/
     public List<EquipmentDemand> getAllEquipmentDemand(){
         return equipmentDemandRepository.getAll();
+    }
+
+    @Override
+    public List<EquipmentDemand> checkAvailability(LocalDate startDate, LocalDate endDate, Equipment equipment) throws ParseException {
+        return equipmentDemandRepository.checkAvailability(startDate,endDate,equipment);
     }
 }

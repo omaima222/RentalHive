@@ -33,12 +33,12 @@ public class PdfAgreement {
             if (columnName.equals("Equipment(s)")) {
                 if (value instanceof java.util.List) {
                     java.util.List<Map<String, Object>> equipmentList = (List<Map<String, Object>>) value;
-                    PdfPTable table = new PdfPTable(5);
+                    PdfPTable table = new PdfPTable(4);
                     table.addCell("Name");
                     table.addCell("Type");
                     table.addCell("Price per day (DMA)");
                     table.addCell("End Date");
-                    table.addCell("Duration in (days)");
+//                    table.addCell("Duration in (days)");
                     for (Map<String, Object> equipmentInfo : equipmentList) {
                         table.setWidthPercentage(100);
                         table.setSpacingBefore(10f);
@@ -47,7 +47,7 @@ public class PdfAgreement {
                         table.addCell(equipmentInfo.get("Type").toString());
                         table.addCell(equipmentInfo.get("Price per day").toString());
                         table.addCell(equipmentInfo.get("End Date").toString());
-                        table.addCell(equipmentInfo.get("Duration in (days)").toString());
+//                        table.addCell(equipmentInfo.get("Duration in (days)").toString());
                     }
                     document.add(table);
                 }
