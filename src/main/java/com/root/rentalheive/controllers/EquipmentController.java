@@ -6,6 +6,7 @@ import com.root.rentalheive.services.interfaces.EquipmentService;
 import com.root.rentalheive.services.interfaces.TypeServices;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -34,7 +35,8 @@ public class EquipmentController {
     public Equipment addEquipment(@RequestBody EquipmentDto equipmentDto){
         Equipment equipment=Equipment.builder()
                 .name(equipmentDto.getName())
-//                .creationDate(Date.from(LocalDate.now()))
+                .creationDate(LocalDate.now())
+                .pricePerDay(equipmentDto.getPricePerDay())
                 .type(typeServices.findById(equipmentDto.getTypeId()))
                 .build();
         return equipmentService.saveEquipment(equipment);

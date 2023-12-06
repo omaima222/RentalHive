@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,5 +17,6 @@ public class EquipmentDto {
     @Nullable
     Long id;
     String name;
+    float pricePerDay;
     Long typeId;
 }
