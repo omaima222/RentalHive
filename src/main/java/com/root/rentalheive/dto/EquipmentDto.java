@@ -18,5 +18,6 @@ public class EquipmentDto {
     Long id;
     String name;
     float pricePerDay;
+    String img;
     Long typeId;
 }

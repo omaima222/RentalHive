@@ -30,6 +30,7 @@ public class Equipment {
     private float pricePerDay;
 
     private LocalDate creationDate;
+    private String imag;
 
     @ManyToOne()
     @JoinColumn(name = "type_id" )
