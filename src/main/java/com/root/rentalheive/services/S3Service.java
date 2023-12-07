@@ -17,13 +17,13 @@ public class S3Service {
 
     private final AmazonS3 amazonS3;
    // @Value("${amazon.aws.accesskey}")
-    private String awsAccessKey="AKIA6OLOSENVLTQKCAUA";
+    private String awsAccessKey="";
 
    // @Value("${amazon.aws.secretkey}")
-    private String awsSecretKey="gH06sfvM9skJoKov4v/X9b429f3J26U0KZ2ysxDL";
+    private String awsSecretKey="";
 
   //  @Value("${amazon.aws.region}")
-    private String awsRegion="us-east-1";
+    private String awsRegion="";
 
   //  @Value("${aws.bucket.name}")
     private String bucketName="rentalhive";
