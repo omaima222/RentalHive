@@ -26,6 +26,8 @@ public class RentalHeiveApplication {
         config.addAllowedMethod("*");
         config.addAllowedHeader("*");
         source.registerCorsConfiguration("/**", config);
+
         return new CorsFilter(source);
     }
+
 }

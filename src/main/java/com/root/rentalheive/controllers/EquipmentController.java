@@ -17,7 +17,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import static com.root.rentalheive.utils.ImageUtils.saveImageLocally;
 
 @RestController
 @RequestMapping("/api/equipments")
@@ -42,7 +41,7 @@ public class EquipmentController {
         return equipmentService.getEquipmentByName(name);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "",  produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody Equipment addEquipment(@RequestParam("img") MultipartFile file,
                                                 @RequestParam("name") String name,
                                                 @RequestParam("pricePerDay") float pricePerDay,
@@ -53,8 +52,7 @@ public class EquipmentController {
         equipmentDto.setPricePerDay(pricePerDay);
         equipmentDto.setTypeId(typeId);
 
-        String targetDirectory = "C:\\Users\\Abdelaziz\\IdeaProjects\\RentalHive\\src\\main\\java\\com\\root\\rentalheive\\images";
-        String imageName = saveImageLocally(file, targetDirectory);
+        String imageName = equipmentService.saveImage(file);
 
         Equipment equipment = Equipment.builder()
                 .name(equipmentDto.getName())
