@@ -10,8 +10,4 @@
             <column name="imag" type="VARCHAR(255)"/>
         </addColumn>
     </changeSet>
-    <changeSet id="1701872678418-2" author="Abdelaziz (generated)">
-        <dropColumn columnName="creation_date" tableName="demand"/>
-    </changeSet>
-
 </databaseChangeLog>
