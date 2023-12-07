@@ -6,7 +6,7 @@ import com.root.rentalheive.dto.DevisDto;
 import com.root.rentalheive.dto.OfferDto;
 import com.root.rentalheive.entities.Devis;
 import com.root.rentalheive.entities.Offer;
-import com.root.rentalheive.services.OfferService;
+import com.root.rentalheive.services.interfaces.OfferService;
 import com.root.rentalheive.utils.PdfGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

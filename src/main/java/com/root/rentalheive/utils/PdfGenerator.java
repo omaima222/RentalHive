@@ -38,6 +38,7 @@ public class PdfGenerator {
                     table.addCell("Type");
                     table.addCell("Start date");
                     table.addCell("End date");
+
                     for (Map<String, Object> equipmentInfo : equipmentList) {
                         table.setWidthPercentage(100);
                         table.setSpacingBefore(10f);

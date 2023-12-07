@@ -9,21 +9,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import com.root.rentalheive.services.interfaces.OfferService;
 
 import java.util.List;
 
 @Service
-public class OfferService {
+public class OfferServiceImpl  implements OfferService {
+    @Autowired
+    private JavaMailSender mailSender;
     OfferRepository offerRepository;
 
     DevisRepository devisRepository;
     @Autowired
-    public OfferService(OfferRepository offerRepository, DevisRepository devisRepository){
+    public  OfferServiceImpl(OfferRepository offerRepository, DevisRepository devisRepository){
         this.offerRepository = offerRepository;
         this.devisRepository = devisRepository;
     }
-    @Autowired
-    private JavaMailSender mailSender;
 
     public List<Offer> getOffers(){return this.offerRepository.findAll();}
     public Offer getOfferById(Long id){

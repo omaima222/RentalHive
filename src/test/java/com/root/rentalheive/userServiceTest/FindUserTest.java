@@ -2,7 +2,7 @@ package com.root.rentalheive.userServiceTest;
 
 import com.root.rentalheive.entities.User;
 import com.root.rentalheive.repositories.UserRepository;
-import com.root.rentalheive.services.UserService;
+import com.root.rentalheive.services.interfaces.UserService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class FindUserTest {
+ class FindUserTest {
 
     @Mock
     private UserRepository userRepository;

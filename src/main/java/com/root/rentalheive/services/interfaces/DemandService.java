@@ -1,5 +1,6 @@
 package com.root.rentalheive.services.interfaces;
 
+import com.root.rentalheive.dto.DemandDto;
 import com.root.rentalheive.entities.Demand;
 import org.springframework.stereotype.Service;
 
@@ -11,4 +12,5 @@ public interface DemandService {
     Demand getDemandById(Long id);
     Map<String, Object> declineDemand(Long id);
     List<Demand> getAll();
+    Boolean isEquipmentAvailable(DemandDto demandDto);
 }

@@ -1,4 +1,5 @@
 package com.root.rentalheive.controllers;
+import com.root.rentalheive.dto.TypeDto;
 import com.root.rentalheive.entities.Type;
 import com.root.rentalheive.services.TypeServicesImp;
 import com.root.rentalheive.services.interfaces.TypeServices;
@@ -24,12 +25,17 @@ public class TypeControllers {
     }
 
     @PostMapping("")
-    public Type addType(@RequestBody Type type){
+    public Type addType(@RequestBody TypeDto typeDto){
+        Type type = new Type();
+        type.setName(typeDto.getName());
         return typeServices.addService(type);
     }
 
     @PutMapping("")
-    public Type updateType(@RequestBody Type type){
+    public Type updateType(@RequestBody TypeDto typeDto){
+        Type type = new Type();
+        type.setName(typeDto.getName());
+        type.setId(typeDto.getId());
         return typeServices.updateService(type);
     }
 
