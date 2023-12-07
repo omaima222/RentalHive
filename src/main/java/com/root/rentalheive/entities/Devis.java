@@ -54,7 +54,7 @@ public class Devis {
                 Map<String, Object> map = new HashMap<>();
                 map.put("Equipment(s)", equipmentsList);
                 map.put("Total price", totalPrice+" DMA");
-//              map.put("Demand date", this.demand.getEquipmentDemands().);
+//                map.put("Demand date", this.demand.getEquipmentDemands().);
 
                 return map;
         }
