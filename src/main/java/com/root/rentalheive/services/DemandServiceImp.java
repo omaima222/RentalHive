@@ -76,4 +76,8 @@ public class DemandServiceImp implements DemandService {
     public List<Demand> getAll() {
         return demandeRepository.findAll();
     }
+
+    public List<Demand> getAllDemandWithoutDevis() {
+        return demandeRepository.findDemandByDevisIsNull();
+    }
 }

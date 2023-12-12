@@ -18,7 +18,7 @@ public interface DevisService {
     void sendDevis(Long id);
     ResponseEntity<FileSystemResource> sendAgreementWithEmail(Devis devis) throws DocumentException, IOException;
     void deleteDevis(Long id);
-    Devis declineDevis(Long id);
+    Devis toggleDevisStatus(Long id);
     Devis getDevisById(Long id);
 
     List<Devis> getDevisByUser(Long id);

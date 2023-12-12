@@ -38,6 +38,10 @@ public class DemandController {
     public List<Demand> getAll() {
         return demandService.getAll();
     }
+    @GetMapping("withoutDevis")
+    public List<Demand> getAllDemandWithoutDevis() {
+        return demandService.getAllDemandWithoutDevis();
+    }
 
     @GetMapping("/{id}")
     public Demand getDemadById(@PathVariable Long id) {

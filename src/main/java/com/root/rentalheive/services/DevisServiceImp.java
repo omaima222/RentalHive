@@ -110,9 +110,17 @@ public class DevisServiceImp implements DevisService {
     }
 
     @Override
-    public  Devis declineDevis(Long id){
+    public  Devis toggleDevisStatus(Long id){
         Devis devis = this.devisRepository.findById(id).get();
-        devis.setStatus(DevisStatus.DECLINED);
+        DevisStatus status = devis.getStatus();
+
+        if(status.equals(DevisStatus.DECLINED) || status.equals(DevisStatus.PENDING)){
+
+            devis.setStatus(DevisStatus.APPROVED);
+        }else {
+            devis.setStatus(DevisStatus.DECLINED);
+        }
+
         return this.devisRepository.save(devis);
     }
 

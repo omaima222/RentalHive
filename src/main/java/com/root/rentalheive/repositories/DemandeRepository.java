@@ -22,4 +22,6 @@ public interface DemandeRepository extends JpaRepository<Demand, Long> {
      int declineDemand(Long id,@Param("status") DemandStatus status);
     @Query("SELECT ed FROM EquipmentDemand ed WHERE ed.demand.id = :id")
     List<EquipmentDemand> findAllByDemandId(Long id);
+
+    List<Demand> findDemandByDevisIsNull();
 }

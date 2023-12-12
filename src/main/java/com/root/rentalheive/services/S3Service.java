@@ -17,16 +17,17 @@ public class S3Service {
 
     private final AmazonS3 amazonS3;
    // @Value("${amazon.aws.accesskey}")
-    private String awsAccessKey="";
+    private String awsAccessKey="AKIA6OLOSENVLTQKCAUA";
 
    // @Value("${amazon.aws.secretkey}")
-    private String awsSecretKey="";
+    private String awsSecretKey="gH06sfvM9skJoKov4v/X9b429f3J26U0KZ2ysxDL";
 
   //  @Value("${amazon.aws.region}")
-    private String awsRegion="";
+    private String awsRegion="us-east-1";
 
   //  @Value("${aws.bucket.name}")
     private String bucketName="rentalhive";
+
     public S3Service() {
 
         BasicAWSCredentials credentials = new BasicAWSCredentials(awsAccessKey, awsSecretKey);
