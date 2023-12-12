@@ -1,6 +1,7 @@
 package com.root.rentalheive.repositories;
 
 import com.root.rentalheive.entities.Demand;
+import com.root.rentalheive.entities.EquipmentDemand;
 import com.root.rentalheive.enums.DemandStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -19,4 +20,6 @@ public interface DemandeRepository extends JpaRepository<Demand, Long> {
     @Modifying
     @Query("UPDATE Demand d SET d.status = :status WHERE d.id = :id")
      int declineDemand(Long id,@Param("status") DemandStatus status);
+    @Query("SELECT ed FROM EquipmentDemand ed WHERE ed.demand.id = :id")
+    List<EquipmentDemand> findAllByDemandId(Long id);
 }

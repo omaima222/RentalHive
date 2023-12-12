@@ -3,6 +3,7 @@ package com.root.rentalheive.services;
 import com.root.rentalheive.dto.DemandDto;
 import com.root.rentalheive.entities.Demand;
 import com.root.rentalheive.entities.Equipment;
+import com.root.rentalheive.entities.EquipmentDemand;
 import com.root.rentalheive.enums.DemandStatus;
 import com.root.rentalheive.exception.EquipmentReserved;
 import com.root.rentalheive.exception.InvalidDateException;
@@ -66,6 +67,10 @@ public class DemandServiceImp implements DemandService {
 
         return response;
 
+    }
+
+    public List<EquipmentDemand> getReservations(Long id) {
+        return demandeRepository.findAllByDemandId(id);
     }
 
     public List<Demand> getAll() {

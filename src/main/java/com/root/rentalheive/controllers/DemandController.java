@@ -44,8 +44,9 @@ public class DemandController {
         return demandService.getDemandById(id);
     }
 
-    @PostMapping("")
+    @PostMapping("/")
     public ResponseEntity<Demand> save(@RequestBody DemandDto demandDto) throws ParseException {
+        DemandDto demandDto1 = demandDto;
         demandService.isEquipmentAvailable(demandDto);
         Demand demand = Demand.builder()
                 .user(userService.getUserById(1L))
@@ -69,5 +70,10 @@ public class DemandController {
     @PostMapping("/decline/{id}")
     public Map<String, Object> declineDemand(@PathVariable Long id) {
         return demandService.declineDemand(id);
+    }
+
+    @GetMapping("/reservations/{id}")
+    public List<EquipmentDemand> getReservations(@PathVariable Long id) {
+        return demandService.getReservations(id);
     }
 }

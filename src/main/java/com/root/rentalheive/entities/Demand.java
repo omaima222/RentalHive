@@ -39,7 +39,7 @@ public class Demand {
     @OneToMany(mappedBy = "demand", cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
     private List<EquipmentDemand> equipmentDemands;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
