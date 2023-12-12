@@ -12,5 +12,6 @@ public interface DemandService {
     Demand getDemandById(Long id);
     Map<String, Object> declineDemand(Long id);
     List<Demand> getAll();
+    List<Demand> getAllDemandWithoutDevis();
     Boolean isEquipmentAvailable(DemandDto demandDto);
 }

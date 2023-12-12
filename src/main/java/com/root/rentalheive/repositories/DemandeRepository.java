@@ -19,4 +19,6 @@ public interface DemandeRepository extends JpaRepository<Demand, Long> {
     @Modifying
     @Query("UPDATE Demand d SET d.status = :status WHERE d.id = :id")
      int declineDemand(Long id,@Param("status") DemandStatus status);
+
+    List<Demand> findDemandByDevisIsNull();
 }
