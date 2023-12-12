@@ -11,11 +11,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -47,8 +49,8 @@ public class Deviscontroller {
 
 
     @PostMapping("")
-    public ResponseEntity<FileSystemResource> saveDevis(@RequestBody DevisDto devisDto) throws IOException, DocumentException {
-        Devis devis = this.devisService.saveDevis(new Date("2022-01-02"), devisDto.getPrice(), devisDto.getDemand_id());
+    public ResponseEntity<Boolean> saveDevis(@RequestBody DevisDto devisDto) throws IOException, DocumentException {
+        Devis devis = this.devisService.saveDevis( devisDto.getPrice(), devisDto.getDemand_id());
         Map<String, Object> devisMap = devis.toMap();
 
         String localFolderPath = "com/root/rentalheive/pdfs/";
@@ -67,7 +69,7 @@ public class Deviscontroller {
         headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName);
         headers.setContentLength(fileResource.contentLength());
 
-        return new ResponseEntity<>(fileResource, headers, HttpStatus.OK);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
     @PostMapping("/accept/{id}")

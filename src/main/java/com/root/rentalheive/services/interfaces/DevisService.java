@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public interface DevisService {
 
     List<Devis> getDevis();
-    Devis saveDevis(Date date, float price, Long demand_id);
+    Devis saveDevis(float price, Long demand_id);
     void sendDevis(Long id);
     ResponseEntity<FileSystemResource> sendAgreementWithEmail(Devis devis) throws DocumentException, IOException;
     void deleteDevis(Long id);

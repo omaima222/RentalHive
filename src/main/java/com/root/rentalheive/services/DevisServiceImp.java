@@ -22,6 +22,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class DevisServiceImp implements DevisService {
     public List<Devis>getDevisByUser(Long id){return this.devisRepository.getDevisByUser(id);}
 
     @Override
-    public Devis saveDevis(Date date, float price, Long demand_id){
+    public Devis saveDevis( float price, Long demand_id){
         Demand demand = this.demandeRepository.findById(demand_id).get();
         Devis devis = new Devis();
         devis.setDemand(demand);
