@@ -8,5 +8,4 @@ import java.util.Date;
 public class DevisDto {
     Long demand_id;
     float price;
-    Date date;
 }

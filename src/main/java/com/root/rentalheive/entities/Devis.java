@@ -51,7 +51,7 @@ public class Devis {
                 List<Map<String, Object>> equipmentsList = this.demand.getEquipmentDemands().stream().map(x->x.toMap()).collect(Collectors.toList());
                 Map<String, Object> map = new HashMap<>();
                 map.put("Equipment(s)", equipmentsList);
-                map.put("Total price", price);
+                map.put("Total price", price + "MAD");
 
                 return map;
         }
